@@ -25,13 +25,6 @@ mongoose.connect('mongodb://localhost:27017/mabase',
 //middleware pour mettre à disposition le json au req
 app.use(express.json());
 
-//middleware qui renvoi un tableau contenant tous les Tickets de notre BD (quand on va dans la page afficher les tickets).
-app.use('/api/ticket', (req, res, next) => {
-     Ticket.find() //la fonction find est une méthode pour récupérer tous les documents dans la collection associée au modèle. Dans ce cas, elle récupère tous les documents de la collection Ticket.
-          .then(tickets => res.status(200).json(tickets)) //si aucune erreur on renvoie les tickets
-          .catch(error => res.status(400).json({ error })); //si une erreur on renvoie un message ERREUR
-});
-
 //Permet d'analyser le corps des requêtes HTTP entrantes
 app.use(bodyParser.json());
 
@@ -54,6 +47,13 @@ app.post('/api/ticket', (req, res, next) => {
      });
      ticket.save() //enregistrement du ticket créé dans la BD
           .then(() => res.status(201).json({ message: 'Ticket enregistré !' })) //si aucune erreur on renvoie un message OK
+          .catch(error => res.status(400).json({ error })); //si une erreur on renvoie un message ERREUR
+});
+
+//middleware qui renvoie un tableau contenant tous les Tickets de notre BD (quand on va dans la page afficher les tickets).
+app.get('/api/ticket', (req, res, next) => {
+     Ticket.find() //la fonction find est une méthode pour récupérer tous les documents dans la collection associée au modèle. Dans ce cas, elle récupère tous les documents de la collection Ticket.
+          .then(tickets => res.status(200).json(tickets)) //si aucune erreur on renvoie les tickets
           .catch(error => res.status(400).json({ error })); //si une erreur on renvoie un message ERREUR
 });
 
