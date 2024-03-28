@@ -52,8 +52,8 @@ const errorHandler = error => {
 
 const server = http.createServer(app);
 
-server.on('error', errorHandler);
-server.on('listening', () => {
+server.on('error', errorHandler); //La méthode permet d'écouter un événement spécifique sur le serveur. Dans ce cas, l'événement est error
+server.on('listening', () => { //Il indique au serveur d'écouter un événement appelé 'listening'. Lorsque cet événement se déclenche, la fonction de flèche fournie sera exécutée.
      const address = server.address();
      const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
      console.log('Listening on ' + bind);

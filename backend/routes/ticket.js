@@ -1,7 +1,7 @@
 const express = require('express')
-const router = express.Router()
-const Ticket = require('../models/ticket');
-const ticketCtrl = require('../controllers/ticket');
+const router = express.Router(); //importation de la méthode router de express
+const Ticket = require('../models/ticket'); //importation du schéma d'un ticket mongoDB
+const ticketCtrl = require('../controllers/ticket'); //importation des controller (fonction) pour chaque méthode
 
 /*
  
@@ -26,7 +26,7 @@ router.get('/:id', ticketCtrl.getOneTicket);
 //middleware pour modifier ticket précisé dans l'url (au clique sur un ticket)
 router.put('/:id', ticketCtrl.modifyTicket);
 
-//middleware pour supprimé un ticket
+//middleware pour supprimé un ticket précisé dans l'url (au clique sur un ticket)
 router.delete('/:id', ticketCtrl.deleteTicket);
 
 module.exports = router;
