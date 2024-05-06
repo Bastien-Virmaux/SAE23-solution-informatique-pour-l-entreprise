@@ -1,8 +1,8 @@
-const express = require('express')
-const router = express.Router(); //importation de la méthode router de express
-const Ticket = require('../models/ticket'); //importation du schéma d'un ticket mongoDB
-const ticketCtrl = require('../controllers/ticket'); //importation des controller (fonction) pour chaque méthode
+const express = require('express'); //importation du module express. Permet la simplification pour la création d'une application web en fournissant un ensemble de fonctionnalités pour gérer les routes, les requêtes HTTP, les réponses ...
+const router = express.Router(); //création d'un objet router en utilisant la fonction Router proposé par express.Les routeurs sont utilisés pour définir des groupes de routes dans une application Express. Cela permet d'organiser les routes en fonction de leur fonctionnalité ou de leur contexte.
+const ticketCtrl = require('../controllers/ticket');
 const auth = require('../middleware/auth');
+const Ticket = require('../models/ticket');
 
 /*
  
@@ -14,6 +14,8 @@ PUT => requête HTTP put pour modifier un élément
 DELETE => requête HTTP delete pour supprimer un élément
  
 */
+
+console.log(auth);
 
 //middleware pour enregistré un ticket
 router.post('/', auth, ticketCtrl.createTicket);
