@@ -15,8 +15,6 @@ DELETE => requête HTTP delete pour supprimer un élément
  
 */
 
-console.log(auth);
-
 //middleware pour enregistré un ticket
 router.post('/', auth, ticketCtrl.createTicket);
 

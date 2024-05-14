@@ -9,7 +9,7 @@ module.exports = (req, res, next) => { //exporte une fonction middleware comme u
 
           req.auth = { userId }; //ajoute un objet auth contenant l'identifiant de l'utilisateur 
 
-          if (req.body.userId && req.body.userI !== userId) { //vérifie si il y a un identifiant utilisateur dans la requête et vérifie si l'identifiant présent la requête correspond à l'identifiant trouvé lors du décodage du jeton. Si ça ne correspond pas on léve une erreur sinon on passe au prochain middleware. 
+          if (req.body.userId && req.body.userId !== userId) { //vérifie si il y a un identifiant utilisateur dans la requête et vérifie si l'identifiant présent la requête correspond à l'identifiant trouvé lors du décodage du jeton. Si ça ne correspond pas on léve une erreur sinon on passe au prochain middleware. 
                throw 'Invalid user ID';
           } else {
                next();
