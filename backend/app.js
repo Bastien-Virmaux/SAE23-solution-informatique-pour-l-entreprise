@@ -4,6 +4,7 @@ const mongoose = require('mongoose'); //importation de la librairie mongoose
 const Ticket = require('./models/ticket'); //importation du schéma d'un ticket mongoDB
 const ticketRoutes = require('./routes/ticket'); //importation des routes
 const userRoute = require('./routes/user');
+const path = require('path');
 const app = express(); //instanciation d'express
 
 
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/mabase',
      .then(() => console.log('Connexion à MongoDB réussie !'))
      .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //middleware pour mettre à disposition le json au req
 app.use(express.json());

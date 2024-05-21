@@ -2,7 +2,9 @@ const express = require('express'); //importation du module express. Permet la s
 const router = express.Router(); //création d'un objet router en utilisant la fonction Router proposé par express.Les routeurs sont utilisés pour définir des groupes de routes dans une application Express. Cela permet d'organiser les routes en fonction de leur fonctionnalité ou de leur contexte.
 const ticketCtrl = require('../controllers/ticket');
 const auth = require('../middleware/auth');
+const multer = require('../middleware/multer-config');
 const Ticket = require('../models/ticket');
+
 
 /*
  
@@ -16,7 +18,7 @@ DELETE => requête HTTP delete pour supprimer un élément
 */
 
 //middleware pour enregistré un ticket
-router.post('/', auth, ticketCtrl.createTicket);
+router.post('/', auth, multer, ticketCtrl.createTicket);
 
 //middleware qui renvoie un tableau contenant tous les Tickets de notre BD (quand on va dans la page afficher les tickets).
 router.get('/', auth, ticketCtrl.getAllTicket);
@@ -25,7 +27,7 @@ router.get('/', auth, ticketCtrl.getAllTicket);
 router.get('/:id', auth, ticketCtrl.getOneTicket);
 
 //middleware pour modifier ticket précisé dans l'url (au clique sur un ticket)
-router.put('/:id', auth, ticketCtrl.modifyTicket);
+router.put('/:id', auth, multer, ticketCtrl.modifyTicket);
 
 //middleware pour supprimé un ticket précisé dans l'url (au clique sur un ticket)
 router.delete('/:id', auth, ticketCtrl.deleteTicket);
